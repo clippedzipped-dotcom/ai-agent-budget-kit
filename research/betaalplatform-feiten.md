@@ -1,0 +1,28 @@
+# Betaalplatform-feiten — AI Agent Budget Kit ($19, privéverkoper in NL, geen KVK)
+
+Datum: 2026-10-02
+Methode: live tariefpagina's gelezen via MCP web-extractie (web_fetch en de station-browser waren tijdens die run niet beschikbaar). Alleen wat LETTERLIJK op de pagina staat is opgenomen. Dit bestand is naar GitHub geschreven omdat het lokale workspace vergrendeld was door een andere agent-run (fs_write en shell_exec gaven beide "workspace busy").
+
+## Tabel per platform — kosten bij één verkoop van ~$19
+
+| Platform | (a) Kosten op een $19-verkoop | (b) KVK- of BTW-nummer vereist? | (c) Uitbetaling naar NL-bankrekening? | (d) Citaat + bron |
+|---|---|---|---|---|
+| **Payhip** | Gratis plan: $0/mnd **+5% transactie**. Plus: $29/mnd +2%. Pro: $99/mnd, 0% transactie. Provider rekent apart: *"PayPal and Stripe will still charge at their standard rates once they complete a transaction. This applies for all plans."* → $19 x 5% = **$0,95** Payhip + Stripe/PayPal-kosten. | **Niet vermeld op de prijspagina.** Payhip meldt alleen: *"Payhip is fully compliant to collect and remit EU VAT and UK on your behalf automatically."* | **Niet vermeld op de prijspagina.** | *"Free Forever $0 /mo +5% transaction fee"* — https://payhip.com/pricing |
+| **Gumroad** | **10% + $0,50** per transactie via eigen profiel/directe link. Via Gumroad Discover: 30%. Geen maandkosten. → $19 x 10% + $0,50 = **$2,40**. | Geen KVK/BTW nodig: Gumroad is **merchant of record** — *"Since January 1, 2025, Gumroad handles ALL your tax obligations."* / *"You don't need to worry about VAT, GST, or any other international tax requirements."* | **Niet vermeld op de prijspagina.** | *"10% + $0.50 Per transaction for all sales through your profile or direct links to your customers."* — https://gumroad.com/pricing |
+| **Lemon Squeezy** | **5% + $0,50** per transactie, **$0/mnd**. Buiten de VS kleine extra kosten mogelijk. → $19 x 5% + $0,50 = **$1,45**. | Geen KVK/BTW nodig: Lemon Squeezy is **merchant of record** — *"We take on the liability of tax collection and calculation"* en *"we're also registered to file and pay taxes on your behalf."* | **Ja**, expliciet: *"Lemon Squeezy supports bank wire and PayPal payouts, which are automatically processed into your preferred method twice a month."* | *"5% + 50¢"* — https://www.lemonsqueezy.com/pricing |
+| **Ko-fi** | Shop-verkopen: **5% service fee** + standaard processor-kosten. Tips (eenmalig): 0%. Betaald plan $12/mnd → 0% service fee. → $19 x 5% = **$0,95** + PayPal/Stripe (≈2,9% + vast tarief). | **Niet vermeld op de prijspagina.** Géén merchant of record: *"you get paid directly, we never hold your money. Connect your own payment method, set your own prices, terms and manage your own supporters."* → btw eigen verantwoordelijkheid. | **Ja**, via eigen **PayPal of Stripe**-account. | *"5% service fee on Memberships, Shop sales, and Commissions"* / *"Yes, because Ko-fi doesn't process payments you'll need to connect your Ko-fi to a PayPal or Stripe account to get paid."* — https://ko-fi.com/pricing |
+| **Mollie** | Pay-as-you-go **€0/mnd**. iDEAL **€0,32** per betaling; Europese consumentenkaarten **1,80% + €0,25**; SEPA-incasso €0,35; *"PayPal + €0.10"*. Bij $19 (≈€17,50) via iDEAL: **€0,32**; via kaart ≈ **€0,57**. Uitbetaling: eerste 5/maand gratis, daarna €0,25 per stuk. | **Niet vermeld op de prijspagina.** Géén merchant of record — btw eigen verantwoordelijkheid. | **Ja** (NL-betaalprovider). | *"No minimum costs, no lock-in contracts, no hidden fees. With Mollie, you only pay for successful transactions."* / *"iDEAL \| Wero €0.32"* — https://www.mollie.com/pricing |
+| **Stripe Payment Links** | Payment Links is **inbegrepen** in de gewone Stripe-tarieven, geen extra abonnement. **1,5% + €0,25** voor standaard Europese creditcards; **2,5% + €0,25** voor VK-kaarten. → €17,50 via EU-kaart ≈ **€0,51**. | **Niet vermeld op de prijspagina.** Géén merchant of record — btw-aangifte blijft de verkoper. | **Ja** (Stripe keert uit op een Nederlandse rekening). | *"Payment Links is inbegrepen bij de tarieven van Stripe"* / *"1,5% + € 0,25 voor standaard Europese creditcards"* — https://stripe.com/nl/payment-links |
+
+## Merchant of record — het belangrijkste verschil (btw)
+
+- **Draagt de btw voor je af (merchant of record): Gumroad, Lemon Squeezy, Payhip** (Payhip remit EU VAT/UK namens jou).
+- **Jij blijft zelf verantwoordelijk voor de btw: Mollie, Stripe Payment Links, Ko-fi.**
+
+## NIET KUNNEN LEZEN
+
+- **KVK- of BTW-nummer als eis:** geen enkele van de zes pagina's zegt LETTERLIJK dat je een KVK- of BTW-nummer nodig hebt om er als privépersoon een digitaal bestand te verkopen. Ik heb dat dus niet ingevuld en niet gegokt. Voor Gumroad en Lemon Squeezy volgt uit de merchant-of-record-tekst dat *zij* de btw afdragen, wat de BTW-vraag wegneemt — maar een expliciete "geen KVK nodig"-uitspraak staat er niet op.
+- **https://www.mollie.com/nl/prijzen** — gaf **HTTP 404**. De tarieven komen van https://www.mollie.com/pricing (werkt, Engels).
+- **help.ko-fi.com artikelen** — **HTTP 403 (geblokkeerd)** of 404. De shop-specifieke uitleg ("Selling on Ko-fi") kon niet gelezen worden; de 5%-shopfee komt van https://ko-fi.com/pricing.
+- **web_fetch en de station-browser** waren tijdens deze run niet beschikbaar ("fetch failed"; browserprofiel in gebruik door een andere agent-run). Alles is gelezen via de MCP web-extractie, live van de echte pagina's.
+- **Uitbetaling naar een Nederlandse bankrekening** wordt door Payhip en Gumroad **niet op de prijspagina** genoemd; alleen Lemon Squeezy (bank wire), Ko-fi (via eigen PayPal/Stripe) en Mollie/Stripe (NL-providers) noemen het expliciet.
